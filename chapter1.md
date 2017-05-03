@@ -26,16 +26,15 @@
     }
 }(typeof window !== "undefined" ? window : this, function(window, noGlobal) {
     // 真正的代码在这里
-    // 这里之所以将window
-    
+
     // ...
-    
+
     if ( typeof noGlobal === strundefined ) {
         // 这里解释了为什么在函数中将window作为参数传入，我认为有以下几个原因：
         // 1 保护全局作用域
         // 2 函数内容查找window时，不用再向作用域链往上查找，优化了函数
         // 3 压缩代码后，函数内部的window都被替换为更短的函数名，例如a，减少文件量(虽然很小，但是思想要有)
-	window.jQuery = window.$ = jQuery;
+        window.jQuery = window.$ = jQuery;
     }
 
     return jQuery;
