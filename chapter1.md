@@ -4,6 +4,7 @@
 (function (global, factory) {
     // 在这个函数内部，global即window, factory即真正的jQuery函数
     if ( typeof module === "object" && typeof module.exports === "object" ) {
+        // 如果是在commonJS或类commonJS的环境中，则通过module.exports的方式将factory暴露出去
         // For CommonJS and CommonJS-like environments where a proper window is present,
         // execute the factory and get jQuery
         // For environments that do not inherently posses a window with a document
