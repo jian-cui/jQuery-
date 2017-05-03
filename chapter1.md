@@ -21,10 +21,11 @@
                 return factory( w );
             };
     } else {
+        // 如果不是在commonJS环境中，则直接调用函数
         factory( global );
     }
 }(typeof window !== "undefined" ? window : this, function(window, noGlobal) {
-    // 真正的代码
+    // 真正的代码在这里
 })
 ```
 
