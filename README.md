@@ -1,3 +1,4 @@
-# My Awesome Book
+# jQuery源码分析
 
-This file file serves as your book's preface, a great place to describe your book's content and ideas.
+本文档主要用于记录jQuery源码学习过程中的一些想法，以v1.11.0版本为实例。
+
