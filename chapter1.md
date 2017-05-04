@@ -41,9 +41,16 @@
 
     jQuery.fn = jQuery.prototype = {
         jquery: version,
-        constructor: 
+        constructor: jQuery,
+        ...
     }
-
+    
+    var init = jQuery.fn.init = function (selector, context) {
+        ...
+    }
+    
+    init.prototype = jQuery.fn;
+    
     if ( typeof noGlobal === strundefined ) {
         // 这里解释了为什么在函数中将window作为参数传入，我认为有以下几个原因：
         // 1 保护全局作用域
@@ -94,8 +101,7 @@
 
 3. 第二种匿名函数方式中为什么要传入undefined?  
    在部分浏览器中undefined是可以被赋值改变的，这里传入undefined，为了保证函数内部的undefined是正确的  
-   `undefined = 2;  
-   `
+   `undefined = 2;`
 
 ## commonJS处理
 
@@ -119,8 +125,6 @@ if ( typeof module === "object" && typeof module.exports === "object" ) {
 ## 无new构建
 
 使用jQuery时，并没有使用new关键字进行实例化。但是实际上，我们在$\('...'\)是，jQuery内部已经替我们做好了对象的实例化
-
-
 
 > 本章知识点:
 >
