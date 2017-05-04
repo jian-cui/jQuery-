@@ -124,7 +124,32 @@ if ( typeof module === "object" && typeof module.exports === "object" ) {
 
 ## 无new构建
 
-使用jQuery时，并没有使用new关键字进行实例化。但是实际上，我们在$\('...'\)是，jQuery内部已经替我们做好了对象的实例化
+使用jQuery时，并没有使用new关键字进行实例化。但是实际上，我们在`$('...')`是，jQuery内部已经替我们做好了对象的实例化
+
+```javascript
+// Define a local copy of jQuery
+jQuery = function( selector, context ) {
+    // The jQuery object is actually just the init constructor 'enhanced'
+    // Need init if jQuery is called (just allow error to be thrown if not included)
+    return new jQuery.fn.init( selector, context );
+};
+
+...
+
+jQuery.fn = jQuery.prototype = {
+    jquery: version,
+    constructor: jQuery,
+    ...
+};
+
+var init = jQuery.fn.init = function (selector, context) {
+    ...
+};
+
+init.prototype = jQuery.fn;
+```
+
+我们在`$('...')`时，其实返回了`jQuery.fn.init`的实例，也就是说`jQuery.fn.init`
 
 > 本章知识点:
 >
