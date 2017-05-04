@@ -58,12 +58,11 @@
 
 ## 立即执行函数
 
-  
 点开jQuery.js我们会发现类似下面的一个立即执行函数，
 
 ```js
 (function (global, factory) {
-    // ...
+    // 骨架函数
 }(window, function(window, noGlobal) {
     // 工厂函数
 }))
@@ -80,7 +79,7 @@
 关键点：
 
 1. 为什么将window作为参数传入函数中？
-   1. 保护全局作用域，不用担u心代码污染全局作用域
+   1. 保护全局作用域，不用担心代码污染全局作用域，减少变量冲突
    2. 函数在查找window变量时，不用再按照作用域链向上查找，优化了函数
    3. 压缩代码后，函数内部的变量window可以被替换为更短的变量名
       ```js
@@ -90,13 +89,38 @@
    我们将代码拉到最下面，会看到在工厂函数中包含下面代码：
 
    ```js
-   window.jQuery = window.$ = jQuery;
+   window.jQuery = window.$ = jQuery;   // 整个函数只暴露除了$和jQuery给全局作用域，避免了变量重试
    ```
 
 3. 第二种匿名函数方式中为什么要传入undefined?  
    在部分浏览器中undefined是可以被赋值改变的，这里传入undefined，为了保证函数内部的undefined是正确的  
-   `undefined = 2;   
+   `undefined = 2;  
    `
+
+## commonJS处理
+
+在骨架函数内部，jQuery实现了commonJS模块化定义，主要是通过判断当前运行环境中有没有module来实现
+
+```javascript
+if ( typeof module === "object" && typeof module.exports === "object" ) { 
+        module.exports = global.document ?
+            factory( global, true ) :
+            function( w ) {
+                if ( !w.document ) {
+                    throw new Error( "jQuery requires a window with a document" );
+                }
+                return factory( w );
+            };
+    } else {
+        factory( global );
+    }
+```
+
+## 无new构建
+
+使用jQuery时，并没有使用new关键字进行实例化。但是实际上，我们在$\('...'\)是，jQuery内部已经替我们做好了对象的实例化
+
+
 
 > 本章知识点:
 >
