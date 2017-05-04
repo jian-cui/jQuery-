@@ -105,7 +105,7 @@
 
 ## commonJS处理
 
-在骨架函数内部，jQuery实现了commonJS模块化定义，主要是通过判断当前运行环境中有没有module来实现
+在骨架函数内部，jQuery实现了commonJS模块化定义，主要是通过判断当前运行环境中有没有**module**来实现
 
 ```javascript
 if ( typeof module === "object" && typeof module.exports === "object" ) { 
