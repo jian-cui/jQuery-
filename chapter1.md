@@ -56,6 +56,9 @@
 }))
 ```
 
+## 立即执行函数
+
+  
 点开jQuery.js我们会发现类似下面的一个立即执行函数，
 
 ```js
@@ -92,8 +95,8 @@
 
 3. 第二种匿名函数方式中为什么要传入undefined?  
    在部分浏览器中undefined是可以被赋值改变的，这里传入undefined，为了保证函数内部的undefined是正确的  
-   `undefined = 2;`  
-  
+   `undefined = 2;   
+   `
 
 > 本章知识点:
 >
