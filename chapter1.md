@@ -1,6 +1,6 @@
 # 主要架构
 
-```javascript
+```js
 (function (global, factory) {
     // 在这个函数内部，global即window, factory即真正的jQuery函数
     if ( typeof module === "object" && typeof module.exports === "object" ) {
@@ -29,16 +29,16 @@
 
     // ...
     var
-	version = "1.11.0",
+    version = "1.11.0",
 
-	// Define a local copy of jQuery
-	jQuery = function( selector, context ) {
-		// The jQuery object is actually just the init constructor 'enhanced'
-		// Need init if jQuery is called (just allow error to be thrown if not included)
-		return new jQuery.fn.init( selector, context );
-	},
+    // Define a local copy of jQuery
+    jQuery = function( selector, context ) {
+        // The jQuery object is actually just the init constructor 'enhanced'
+        // Need init if jQuery is called (just allow error to be thrown if not included)
+        return new jQuery.fn.init( selector, context );
+    },
     // ...
-    
+
     jQuery.fn = jQuery.prototype = {
         jquery: version,
         constructor: 
@@ -58,7 +58,7 @@
 
 点开jQuery.js我们会发现类似下面的一个立即执行函数，
 
-```javascript
+```js
 (function (global, factory) {
     // ...
 }(window, function(window, noGlobal) {
@@ -80,18 +80,17 @@
    1. 保护全局作用域，不用担u心代码污染全局作用域
    2. 函数在查找window变量时，不用再按照作用域链向上查找，优化了函数
    3. 压缩代码后，函数内部的变量window可以被替换为更短的变量名
-
-
-      ```javascript
+      ```js
       (function(a, b) {...}(window, function(window, noGlobal) {...}))
       ```
 2. 既然所有内容都写在匿名函数内部，那我们是怎么直接调用$\(...\)？  
    我们将代码拉到最下面，会看到在工厂函数中包含下面代码：
 
+   ```js
+   window.jQuery = window.$ = jQuery;
+   ```
 
-
-
-
+3. 
 本章知识点:
 
 1. 立即执行函数
