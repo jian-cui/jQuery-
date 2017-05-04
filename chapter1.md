@@ -155,9 +155,11 @@ init.prototype = jQuery.fn;
 
 > 有人会问为什么非要将init麻烦的定义在jQuery.fn，即jQuery的原型上，而不是定义成jQuery.init，这也不用再充值指向init的原型了？
 >
-> 其实这么做主要是为了区别开对象方法和静态方法，
->
-> 本章知识点:
+> 其实这么做主要是为了区别开对象方法和静态方法，jQuery.someFunc都是静态方法，jQuery.fn.someFunc都是对象方法，将构建函数写在jQuery.fn中更明确了这条界线。
+
+
+
+> 本章细碎知识点:
 >
 > 1. 立即执行函数
 >
