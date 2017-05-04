@@ -149,7 +149,7 @@ var init = jQuery.fn.init = function (selector, context) {
 init.prototype = jQuery.fn;
 ```
 
-我们在`$('...')`时，其实返回了`jQuery.fn.init`的实例，也就是说`jQuery.fn.init`
+我们在`$('...')`时，其实返回了`jQuery.fn.init`的实例，也就是说**jQuery.fn.init才是真正的构造函数**。
 
 > 本章知识点:
 >
